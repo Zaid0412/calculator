@@ -18,8 +18,8 @@ themeChangBtn.addEventListener("click", function () {
   container.classList.toggle("white-container");
   container.classList.toggle("container");
 
-  operations.classList.toggle("white-operation");
-  operations.classList.toggle("operation");
+  //   operations.classList.toggle("white-operation");
+  //   operations.classList.toggle("operation");
 
   if (!toggledWhite) {
     themeIcon.src = "./images/moon.png";
