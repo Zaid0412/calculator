@@ -4,7 +4,7 @@ const headingTitle = document.querySelector(".heading-title");
 const themeIcon = document.querySelector(".theme-icon");
 const body = document.querySelector("body");
 const container = document.querySelector(".container");
-const operations = document.get(".operation");
+// const operations = document.get(".operation");
 
 let toggledWhite = false;
 
