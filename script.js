@@ -4,11 +4,22 @@ const headingTitle = document.querySelector(".heading-title");
 const themeIcon = document.querySelector(".theme-icon");
 const body = document.querySelector("body");
 const container = document.querySelector(".container");
-// const operations = document.get(".operation");
+const clearBtn = document.querySelector(".clear-btn");
+const deleteBtn = document.querySelector(".delete-btn");
+const operation = document.querySelectorAll(".operation");
+const result = document.querySelector(".result");
+const clearBtnsContainer = document.querySelector(".clear-btns");
+const numsAndOperations = document.querySelector(".nums-and-operations");
+
+console.log(result);
+console.log(clearBtnsContainer);
+console.log(numsAndOperations);
 
 let toggledWhite = false;
 
-themeChangBtn.addEventListener("click", function () {
+// ---------------- Functions ---------------- //
+
+function changeTheme() {
   header.classList.toggle("white-header");
   header.classList.toggle("header");
 
@@ -18,8 +29,16 @@ themeChangBtn.addEventListener("click", function () {
   container.classList.toggle("white-container");
   container.classList.toggle("container");
 
-  //   operations.classList.toggle("white-operation");
-  //   operations.classList.toggle("operation");
+  clearBtn.classList.toggle("white-clear-btn");
+  clearBtn.classList.toggle("clear-btn");
+
+  deleteBtn.classList.toggle("white-delete-btn");
+  deleteBtn.classList.toggle("delete-btn");
+
+  for (const btn of operation) {
+    btn.classList.toggle("white-operation");
+    btn.classList.toggle("operation");
+  }
 
   if (!toggledWhite) {
     themeIcon.src = "./images/moon.png";
@@ -32,4 +51,8 @@ themeChangBtn.addEventListener("click", function () {
     body.style.backgroundColor = "#1f2029";
     toggledWhite = false;
   }
-});
+}
+
+//  ---------- Event Listeners ------------ //
+
+themeChangBtn.addEventListener("click", changeTheme);

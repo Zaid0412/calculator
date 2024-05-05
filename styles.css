@@ -13,7 +13,7 @@ body {
 
 /* Header */
 .white-header,
-header {
+.header {
   background-color: #161515;
   display: flex;
   justify-content: space-between;
@@ -90,7 +90,8 @@ header {
   border-right: 3px solid #ededed;
 }
 
-#clear-btn {
+.white-clear-btn,
+.clear-btn {
   text-align: center;
   border: none;
   background-color: #ffeba7;
@@ -109,7 +110,8 @@ header {
   font-family: "Poppins", sans-serif;
 }
 
-#delete-btn {
+.white-delete-btn,
+.delete-btn {
   text-align: center;
   border: none;
   background-color: #ffeba7;
@@ -128,8 +130,17 @@ header {
   font-family: "Poppins", sans-serif;
 }
 
-#clear-btn:hover,
-#delete-btn:hover {
+.white-clear-btn,
+.white-delete-btn {
+  background-color: #3b82f6;
+  box-shadow: 0 8px 24px 0 rgba(59, 130, 246, 0.2);
+  color: white;
+}
+
+.white-clear-btn:hover,
+.clear-btn:hover:hover,
+.white-delete-btn:hover,
+.delete-btn:hover {
   background-color: #c71313;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 #440505;
@@ -164,8 +175,14 @@ header {
 
 .white-operation {
   background-color: #3b82f6;
-  box-shadow: 0 8px 24px 0 rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 24px 0 rgba(59, 130, 246, 0.6);
   color: white;
+  -webkit-transition: all 100ms linear;
+  transition: all 100ms linear;
+}
+
+.white-operation:hover {
+  background-color: #1f2029;
 }
 
 .operation:hover {
