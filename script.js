@@ -13,6 +13,8 @@ const numsAndOperations = document.querySelector(".nums-and-operations");
 const equalsBtn = document.querySelector("#equals");
 const displayOper = document.querySelector(".opp");
 const displayResult = document.querySelector(".res");
+const opps = document.querySelectorAll(".operator");
+const deciBtn = document.getElementById(".");
 
 let toggledWhite = false;
 
@@ -69,57 +71,91 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  return x / y;
+  if (y == "0") {
+    return "No";
+  } else {
+    return x / y;
+  }
 }
 
 function operate(a, b, oper) {
-  if (oper == "divide") return divide(a, b);
-  else if (oper == "multiply") return multiply(a, b);
-  else if (oper == "add") return add(a, b);
-  else if (oper == "minus") return subtract(a, b);
+  if (oper == "÷") return divide(a, b);
+  else if (oper == "×") return multiply(a, b);
+  else if (oper == "+") return add(a, b);
+  else if (oper == "-") return subtract(a, b);
 }
 
 // Getting the First number, Second number and operator
 let fullOper = "";
+let lastClickedIsOp = false;
+let lastClickedDeci = false;
 let firstNum, secondNum, operator;
 for (const btn of operation) {
   btn.addEventListener("click", function () {
-    if (
-      btn.id == "plus" ||
-      btn.id == "minus" ||
-      btn.id == "multiply" ||
-      btn.id == "divide"
+    if (btn.id == "equals") {
+      fullOper;
+    } else if (btn.id == ".") {
+      fullOper += `${btn.id}`;
+      lastClickedIsOp = false;
+      lastClickedDeci = true;
+      deciBtn.disabled = true;
+    } else if (
+      btn.id == "÷" ||
+      btn.id == "×" ||
+      btn.id == "+" ||
+      btn.id == "-"
     ) {
-      fullOper += `-${btn.id}-`;
-    } else if (btn.id == "equals") fullOper;
-    else fullOper += `${btn.id}`;
+      fullOper += ` ${btn.id} `;
+      lastClickedIsOp = true;
+      lastClickedDeci = false;
+      deciBtn.disabled = false;
+      for (const opp of opps) {
+        opp.disabled = true;
+      }
+    } else {
+      fullOper += `${btn.id}`;
+      lastClickedIsOp = false;
+      lastClickedDeci = false;
+      deciBtn.disabled = false;
+      for (const opp of opps) {
+        opp.disabled = false;
+      }
+    }
+    console.log(fullOper);
 
-    [firstNum, operator, secondNum] = fullOper.split("-");
+    // Making it so that you can't click
 
-    displayOper.textContent = fullOper
-      .replaceAll("-", " ")
-      .replaceAll("multiply", " × ")
-      .replaceAll("divide", " ÷ ")
-      .replaceAll("plus", " + ")
-      .replaceAll("minus", " - ");
+    [firstNum, operator, secondNum] = fullOper.split(" ");
+
+    displayOper.textContent = fullOper.replaceAll(" ", "");
   });
 }
 
 // Evaluating the operation
 equalsBtn.addEventListener("click", function () {
+  if (secondNum == "0") {
+    const operResult = "No";
+    displayResult.textContent = operResult;
+  }
+
   const operResult = operate(Number(firstNum), Number(secondNum), operator);
-  displayResult.textContent = `= ${operResult}`;
+  console.log(firstNum);
+  displayResult.textContent = `= ${operResult.toFixed(2)}`;
 });
 
 deleteBtn.addEventListener("click", function () {
   fullOper = fullOper.slice(0, -1);
   console.log(fullOper);
-  displayOper.textContent = fullOper
-    .replaceAll("-", " ")
-    .replaceAll("multiply", " × ")
-    .replaceAll("divide", " ÷ ")
-    .replaceAll("plus", " + ")
-    .replaceAll("minus", " - ");
+  displayOper.textContent = fullOper.replaceAll(" ", "");
+});
+
+clearBtn.addEventListener("click", function () {
+  displayOper.textContent = "";
+  displayResult.textContent = "";
+  firstNum = "";
+  secondNum = "";
+  operator = "";
+  fullOper = "";
 });
 
 //  ---------- Event Listeners ------------ //
