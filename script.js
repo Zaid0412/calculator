@@ -10,15 +10,15 @@ const operation = document.querySelectorAll(".operation");
 const result = document.querySelector(".result");
 const clearBtnsContainer = document.querySelector(".clear-btns");
 const numsAndOperations = document.querySelector(".nums-and-operations");
-
-console.log(result);
-console.log(clearBtnsContainer);
-console.log(numsAndOperations);
+const equalsBtn = document.querySelector("#equals");
+const displayOper = document.querySelector(".opp");
+const displayResult = document.querySelector(".res");
 
 let toggledWhite = false;
 
 // ---------------- Functions ---------------- //
 
+// Theme changing function
 function changeTheme() {
   header.classList.toggle("white-header");
   header.classList.toggle("header");
@@ -34,6 +34,9 @@ function changeTheme() {
 
   deleteBtn.classList.toggle("white-delete-btn");
   deleteBtn.classList.toggle("delete-btn");
+
+  result.classList.toggle("white-result");
+  result.classList.toggle("result");
 
   for (const btn of operation) {
     btn.classList.toggle("white-operation");
@@ -52,6 +55,72 @@ function changeTheme() {
     toggledWhite = false;
   }
 }
+
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function multiply(x, y) {
+  return x * y;
+}
+
+function divide(x, y) {
+  return x / y;
+}
+
+function operate(a, b, oper) {
+  if (oper == "divide") return divide(a, b);
+  else if (oper == "multiply") return multiply(a, b);
+  else if (oper == "add") return add(a, b);
+  else if (oper == "minus") return subtract(a, b);
+}
+
+// Getting the First number, Second number and operator
+let fullOper = "";
+let firstNum, secondNum, operator;
+for (const btn of operation) {
+  btn.addEventListener("click", function () {
+    if (
+      btn.id == "plus" ||
+      btn.id == "minus" ||
+      btn.id == "multiply" ||
+      btn.id == "divide"
+    ) {
+      fullOper += `-${btn.id}-`;
+    } else if (btn.id == "equals") fullOper;
+    else fullOper += `${btn.id}`;
+
+    [firstNum, operator, secondNum] = fullOper.split("-");
+
+    displayOper.textContent = fullOper
+      .replaceAll("-", " ")
+      .replaceAll("multiply", " × ")
+      .replaceAll("divide", " ÷ ")
+      .replaceAll("plus", " + ")
+      .replaceAll("minus", " - ");
+  });
+}
+
+// Evaluating the operation
+equalsBtn.addEventListener("click", function () {
+  const operResult = operate(Number(firstNum), Number(secondNum), operator);
+  displayResult.textContent = `= ${operResult}`;
+});
+
+deleteBtn.addEventListener("click", function () {
+  fullOper = fullOper.slice(0, -1);
+  console.log(fullOper);
+  displayOper.textContent = fullOper
+    .replaceAll("-", " ")
+    .replaceAll("multiply", " × ")
+    .replaceAll("divide", " ÷ ")
+    .replaceAll("plus", " + ")
+    .replaceAll("minus", " - ");
+});
 
 //  ---------- Event Listeners ------------ //
 
