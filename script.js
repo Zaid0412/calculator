@@ -89,6 +89,9 @@ function operate(a, b, oper) {
 let fullOper = "";
 let lastClickedIsOp = false;
 let lastClickedDeci = false;
+let equalsSignClicked2 = false;
+let operResult;
+
 let firstNum, secondNum, operator;
 for (const btn of operation) {
   btn.addEventListener("click", function () {
@@ -123,9 +126,15 @@ for (const btn of operation) {
     }
     console.log(fullOper);
 
-    // Making it so that you can't click
-
-    [firstNum, operator, secondNum] = fullOper.split(" ");
+    if (equalsSignClicked2) {
+      // reset fullOper
+      console.log(fullOper);
+      [firstNum, operator, secondNum] = fullOper.split(" ");
+      firstNum = operResult;
+      console.log(
+        `First: ${firstNum}, Operator: ${operator}, Second: ${secondNum}`
+      );
+    } else [firstNum, operator, secondNum] = fullOper.split(" ");
 
     displayOper.textContent = fullOper.replaceAll(" ", "");
   });
@@ -134,13 +143,15 @@ for (const btn of operation) {
 // Evaluating the operation
 equalsBtn.addEventListener("click", function () {
   if (secondNum == "0") {
-    const operResult = "No";
+    operResult = "No";
     displayResult.textContent = operResult;
   }
 
-  const operResult = operate(Number(firstNum), Number(secondNum), operator);
-  console.log(firstNum);
+  operResult = operate(Number(firstNum), Number(secondNum), operator);
   displayResult.textContent = `= ${operResult.toFixed(2)}`;
+  console.log(operResult);
+  equalsSignClicked2 = true;
+  fullOper = "";
 });
 
 deleteBtn.addEventListener("click", function () {
@@ -156,6 +167,8 @@ clearBtn.addEventListener("click", function () {
   secondNum = "";
   operator = "";
   fullOper = "";
+  operResult = "";
+  equalsSignClicked2 = false;
 });
 
 //  ---------- Event Listeners ------------ //
