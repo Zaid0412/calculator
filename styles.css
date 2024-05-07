@@ -11,6 +11,11 @@ body {
   transition: all 200ms linear;
 }
 
+a {
+  text-decoration: none;
+  color: #c4c3ca;
+}
+
 /* Header */
 .white-header,
 .header {
@@ -64,7 +69,7 @@ body {
   background-color: #2c2b25;
   margin-top: 60px;
   margin-bottom: auto;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   background-color: #2a2b38;
   border-radius: 5px;
 }
@@ -82,26 +87,32 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 135px;
-  border: 3px solid #ededed;
+  border: 3px solid #1f2029;
   font-size: 35px;
   font-weight: 600;
   color: #ededed;
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
+  /* -webkit-transition: all 200ms linear;
+  transition: all 200ms linear; */
 }
 
 .white-result {
   color: #161515;
+  border: 3px solid #ededed;
 }
 
+.white-clear-btns,
 .clear-btns {
   height: 70px;
-  /* border: 3px solid #ededed; */
+  /* border: 3px solid #; */
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-left: 3px solid #ededed;
-  border-right: 3px solid #ededed;
+  border-left: 3px solid #1f2029;
+  border-right: 3px solid #1f2029;
+}
+
+.white-clear-btns {
+  border: 3px solid #ededed;
 }
 
 .white-clear-btn,
@@ -160,11 +171,16 @@ body {
   box-shadow: 0 8px 24px 0 #440505;
 }
 
+.white-nums-and-operations,
 .nums-and-operations {
-  border: 3px solid #ededed;
+  border: 3px solid #1f2029;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.white-nums-and-operations {
+  border: 3px solid #ededed;
 }
 
 .white-operation,

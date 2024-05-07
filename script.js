@@ -40,6 +40,12 @@ function changeTheme() {
   result.classList.toggle("white-result");
   result.classList.toggle("result");
 
+  clearBtnsContainer.classList.toggle("white-clear-btns");
+  clearBtnsContainer.classList.toggle("clear-btns");
+
+  numsAndOperations.classList.toggle("white-nums-and-operations");
+  numsAndOperations.classList.toggle("nums-and-operations");
+
   for (const btn of operation) {
     btn.classList.toggle("white-operation");
     btn.classList.toggle("operation");
@@ -131,6 +137,7 @@ for (const btn of operation) {
       console.log(fullOper);
       [firstNum, operator, secondNum] = fullOper.split(" ");
       firstNum = operResult;
+
       console.log(
         `First: ${firstNum}, Operator: ${operator}, Second: ${secondNum}`
       );
@@ -148,7 +155,7 @@ equalsBtn.addEventListener("click", function () {
   }
 
   operResult = operate(Number(firstNum), Number(secondNum), operator);
-  displayResult.textContent = `= ${operResult.toFixed(2)}`;
+  displayResult.textContent = `= ${operResult}`;
   console.log(operResult);
   equalsSignClicked2 = true;
   fullOper = "";
@@ -174,3 +181,5 @@ clearBtn.addEventListener("click", function () {
 //  ---------- Event Listeners ------------ //
 
 themeChangBtn.addEventListener("click", changeTheme);
+
+testNum = "12.34.5.3";
